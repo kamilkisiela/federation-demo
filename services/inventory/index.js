@@ -1,5 +1,6 @@
-const { ApolloServer, gql } = require("apollo-server");
-const { buildFederatedSchema } = require("@apollo/federation");
+/// @ts-check
+import { ApolloServer, gql } from "apollo-server";
+import { buildSubgraphSchema } from "@apollo/subgraph";
 
 const typeDefs = gql`
   extend type Product @key(fields: "upc") {
@@ -29,7 +30,7 @@ const resolvers = {
 };
 
 const server = new ApolloServer({
-  schema: buildFederatedSchema([
+  schema: buildSubgraphSchema([
     {
       typeDefs,
       resolvers

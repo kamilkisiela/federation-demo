@@ -1,5 +1,6 @@
-const { ApolloServer, gql } = require("apollo-server");
-const { buildFederatedSchema } = require("@apollo/federation");
+/// @ts-check
+import { ApolloServer, gql } from "apollo-server";
+import { buildSubgraphSchema } from "@apollo/subgraph";
 
 const typeDefs = gql`
   type Review @key(fields: "id") {
@@ -47,7 +48,7 @@ const resolvers = {
 };
 
 const server = new ApolloServer({
-  schema: buildFederatedSchema([
+  schema: buildSubgraphSchema([
     {
       typeDefs,
       resolvers
@@ -55,7 +56,7 @@ const server = new ApolloServer({
   ])
 });
 
-server.listen({ port: 4002 }).then(({ url }) => {
+server.listen({ port: 4003 }).then(({ url }) => {
   console.log(`🚀 Server ready at ${url}`);
 });
 

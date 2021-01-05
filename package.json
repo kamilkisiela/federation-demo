@@ -1,23 +1,24 @@
 {
+  "private": true,
+  "type": "module",
   "name": "federation-demo",
-  "main": "gateway.js",
   "scripts": {
     "start-gateway": "nodemon gateway.js",
-    "start-service-accounts": "nodemon services/accounts/index.js",
-    "start-service-reviews": "nodemon services/reviews/index.js",
-    "start-service-products": "nodemon services/products/index.js",
-    "start-service-inventory": "nodemon services/inventory/index.js",
-    "start-services": "concurrently \"npm:start-service-*\"",
-    "postinstall": "lerna bootstrap"
+    "start-service-accounts": "yarn workspace accounts run start",
+    "start-service-reviews": "yarn workspace reviews run start",
+    "start-service-products": "yarn workspace products run start",
+    "start-service-inventory": "yarn workspace inventory run start",
+    "start-services": "concurrently \"npm:start-service-*\""
   },
   "devDependencies": {
-    "lerna": "latest",
-    "nodemon": "latest",
-    "concurrently": "latest"
+    "concurrently": "7.3.0",
+    "nodemon": "2.0.19"
   },
   "dependencies": {
-    "@apollo/gateway": "latest",
-    "apollo-server": "latest",
-    "graphql": "latest"
-  }
+    "@apollo/gateway": "2.0.5",
+    "@apollo/subgraph": "2.0.5",
+    "apollo-server": "3.10.0",
+    "graphql": "16.4.0"
+  },
+  "workspaces": ["services/*"]
 }
