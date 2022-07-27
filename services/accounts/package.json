@@ -3,6 +3,10 @@
   "name": "accounts",
   "version": "0.0.0",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "schema:publish": "hive schema:publish ./index.js --service accounts --url http://localhost:4001/graphql",
+    "schema:publish:help": "open-cli https://docs.graphql-hive.com/features/publish-schema",
+    "schema:check": "hive schema:check ./index.js --service accounts",
+    "schema:check:help": "open-cli https://docs.graphql-hive.com/features/checking-schema"
   }
 }
